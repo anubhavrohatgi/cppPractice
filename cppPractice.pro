@@ -1,0 +1,9 @@
+TEMPLATE = subdirs
+
+SUBDIRS += \
+    datastructures \
+    towerHanoi \
+    factorial \
+    fibonacciRecursion \
+    greatestCommonDivisor \
+    isSortedRecursive
