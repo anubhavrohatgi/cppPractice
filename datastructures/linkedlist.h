@@ -178,6 +178,12 @@ public:
     void reverse();
 
 
+    /**
+     * @brief recursiveReversePrint Print the singly linked list in reverse order
+     *      without actually reversing the list. This is a recursive fn.
+     *
+     * @param head Input pointer to the head of the SLL
+     */
     void recursiveReversePrint(node<T>* head);
 
 
