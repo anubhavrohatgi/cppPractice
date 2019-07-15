@@ -6,15 +6,9 @@
 #include <error.h>
 #include <unordered_set>
 
+#include "dsexceptions.h"
+
 namespace ds {
-
-//exception enum
-enum linkedList_exc {
-    FAIL_ACCESS = 200,
-    FAIL_ALLOC,
-    INVALID_INDEX
-};
-
 
 // Node structure for singly linked list
 template <typename T>
@@ -295,8 +289,10 @@ template <typename T>
 T linkedlist<T>::at(size_t index) const
 {
     if(headptr == nullptr && tailptr == nullptr)
-        throw FAIL_ACCESS;
-    else {
+        throw dsexceptions::FAIL_ACCESS;
+    else if((index >= lengthKeeper) || (index < 0)) {
+        throw dsexceptions::OUT_OF_BOUNDS;
+    } else {
         size_t count = 0;
         node<T>* current = headptr;
         while(current!=nullptr){
@@ -307,7 +303,7 @@ T linkedlist<T>::at(size_t index) const
                 current = current->next;
             }
         }
-        throw FAIL_ACCESS;
+        throw dsexceptions::OUT_OF_BOUNDS;
     }
 }
 
@@ -316,8 +312,10 @@ template <typename T>
 node<T>* linkedlist<T>::nodeAt(size_t index)
 {
     if(headptr == nullptr && tailptr == nullptr)
-        throw FAIL_ACCESS;
-    else {
+        throw dsexceptions::FAIL_ACCESS;
+    else if((index >= lengthKeeper) || (index < 0)) {
+        throw dsexceptions::OUT_OF_BOUNDS;
+    } else {
         size_t count = 0;
         node<T>* current = headptr;
         while(current!=nullptr){
@@ -328,16 +326,19 @@ node<T>* linkedlist<T>::nodeAt(size_t index)
                 current = current->next;
             }
         }
-        throw FAIL_ACCESS;
+        throw dsexceptions::OUT_OF_BOUNDS;
     }
 }
+
 
 template <typename T>
 T& linkedlist<T>::operator[](size_t index)
 {
     if(headptr == nullptr && tailptr == nullptr)
-        throw FAIL_ACCESS;
-    else {
+        throw dsexceptions::FAIL_ACCESS;
+    else if ((index >= lengthKeeper) || (index <0)) {
+        throw dsexceptions::OUT_OF_BOUNDS;
+    } else {
         return nodeAt(index)->val;
     }
 }
@@ -399,7 +400,7 @@ void linkedlist<T>::insert(const T& val,size_t index)
             }
             lengthKeeper += 1;
         } else {
-            throw INVALID_INDEX;
+            throw dsexceptions::INVALID_INDEX;
         }
     }
 }
@@ -409,7 +410,7 @@ template <typename T>
 void linkedlist<T>::erase(size_t index)
 {
     if(empty()) {
-        throw INVALID_INDEX;
+        throw dsexceptions::INVALID_INDEX;
     } else {
         // delete the node at the given index
         if((index >=0) && (index < length())){
@@ -442,7 +443,7 @@ void linkedlist<T>::erase(size_t index)
                 lengthKeeper-=1;
             }
         } else {
-            throw INVALID_INDEX;
+            throw dsexceptions::INVALID_INDEX;
         }
     }
 }
