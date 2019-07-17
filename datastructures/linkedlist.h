@@ -186,6 +186,26 @@ public:
      */
     void removeDuplicates();
 
+
+    /**
+     * @brief nthNodefromEnd Gets the nth node from the end of the linked list
+     *  I could have done it using the tailptr, but the problem statement asks
+     *  to iterate over without the tailptr information in the priori.
+     * @param head Input head ptr
+     * @param n Input location nth.
+     * @return Pointer to the nth node
+     */
+    node<T>* nthNodefromEnd(size_t n);
+
+
+    /**
+     * @brief llistHasLoop Checks if the linked list has loop
+     * @param head Input head node
+     * @return true if loop found
+     */
+    bool llistHasLoop(node<T>* head);
+
+
 private:
     node<T>* headptr;
     node<T>* tailptr;
@@ -570,6 +590,56 @@ void linkedlist<T>::recursiveReversePrint(node<T>* head)
     recursiveReversePrint(head->next);
     std::cout<<head->val<<std::endl;
 }
+
+
+
+template <typename T>
+node<T>* linkedlist<T>::nthNodefromEnd(size_t n)
+{
+    if(headptr == nullptr)
+        return nullptr;
+
+    size_t len = 0;
+    node<T>* cur = headptr;
+    while(cur!= nullptr){
+        len++;
+        cur = cur->next;
+    }
+
+    if(n > len){
+        throw dsexceptions::INVALID_INDEX;
+    }
+
+    cur = headptr;
+    //now nth node in demand is at len -n +1
+    for(size_t k =0; k < (len-n-1); k++){
+        cur = cur->next;
+    }
+
+    return cur;
+}
+
+
+template <typename T>
+bool linkedlist<T>::llistHasLoop(node<T>* head)
+{
+    node<T>* fastPtr;
+    node<T>* slowPtr;
+
+    if(head == nullptr){
+        return false;
+    }
+
+    while(slowPtr && fastPtr && fastPtr->next){
+        slowPtr = slowPtr->next;
+        fastPtr = fastPtr->next->next;
+        if(slowPtr==fastPtr)
+            return true;
+    }
+    return false;
+}
+
+
 
 }//end of namespace ds
 
