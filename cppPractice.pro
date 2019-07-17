@@ -6,4 +6,5 @@ SUBDIRS += \
     factorial \
     fibonacciRecursion \
     greatestCommonDivisor \
-    isSortedRecursive
+    isSortedRecursive \
+    singletonDesignPattern
