@@ -1,6 +1,5 @@
 #include <iostream>
 #include <array>
-#include "array.h"
 
 #include "linkedlist.h"
 
@@ -16,6 +15,10 @@ int main()
 //    ll.push_back(5);
 
     cout<<"\n"<<ll<<std::endl;
+
+    cout<<"\n last ele : "<<ll.at(3)<<"\n";
+
+
 
     ll.recursiveReversePrint(ll.begin());
 
