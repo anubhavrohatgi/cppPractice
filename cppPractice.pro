@@ -7,4 +7,5 @@ SUBDIRS += \
     fibonacciRecursion \
     greatestCommonDivisor \
     isSortedRecursive \
-    singletonDesignPattern
+    singletonDesignPattern \
+    bitmapIterator
