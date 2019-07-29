@@ -9,22 +9,41 @@ int main()
 {
     ds::linkedlist<int> ll;
     ll.push_back(1);
-    ll.push_back(31);
+    ll.push_back(2);
     ll.push_back(3);
     ll.push_back(4);
-//    ll.push_back(5);
+    ll.push_back(5);
+    ll.push_back(6);
+    ll.push_back(7);
+    ll.push_back(8);
+
 
     cout<<"\n"<<ll<<std::endl;
 
-    cout<<"\n last ele : "<<ll.at(3)<<"\n";
+//    cout<<"\n last ele : "<<ll.at(3)<<"\n";
 
 
 
-    ll.recursiveReversePrint(ll.begin());
+   // ll.recursiveReversePrint(ll.begin());
 
 //    cout<<"\n The list contains 3 :"<<ll.contains(ll.begin(),3) << std::endl;
 //    cout<<"\n The list contains 33 :"<<ll.contains(33);
     cout<<"\n The list middle is  :"<<ll.mid()->val;
+
+    //make the list loop back
+
+    ds::node<int>* temp = ll.nodeAt(4);
+
+//    temp->val = 3;
+    ll.end()->next = temp;
+
+//    if(ll.end())
+    cout<<"\nLoop :: "<<ll.llistHasLoop(ll.begin());
+    cout<<"\nLoop :: "<<ll.findBeginofLoop(ll.begin());
+    cout<<"\nLoop Length :: "<<ll.lengthOfLoop(ll.begin());
+    cout<<"\n done\n"<<"\n";
+
+
 
 //    ll[0] = 44;
 

@@ -8,4 +8,5 @@ SOURCES += \
 
 HEADERS += \
     linkedlist.h \
-    dsexceptions.h
+    dsexceptions.h \
+    bst.h
