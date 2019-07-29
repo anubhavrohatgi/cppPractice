@@ -206,6 +206,13 @@ public:
     bool llistHasLoop(node<T>* head);
 
 
+    /**
+     * @brief findBeginofLoop Outputs the node value of the begining node of loop
+     * @param head Input headptr
+     * @return Output value
+     */
+    T findBeginofLoop(node<T>* head);
+
 private:
     node<T>* headptr;
     node<T>* tailptr;
@@ -623,8 +630,8 @@ node<T>* linkedlist<T>::nthNodefromEnd(size_t n)
 template <typename T>
 bool linkedlist<T>::llistHasLoop(node<T>* head)
 {
-    node<T>* fastPtr;
-    node<T>* slowPtr;
+    node<T>* fastPtr = head;
+    node<T>* slowPtr = head;
 
     if(head == nullptr){
         return false;
@@ -639,6 +646,35 @@ bool linkedlist<T>::llistHasLoop(node<T>* head)
     return false;
 }
 
+template <typename T>
+T linkedlist<T>::findBeginofLoop(node<T>* head){
+
+    if(head == nullptr)
+        return 0;
+
+    node<T>* fastPtr = headptr;
+    node<T>* slowPtr = headptr;
+
+    bool loopExists = false;
+    while(slowPtr && fastPtr && fastPtr->next){
+        slowPtr = slowPtr->next;
+        fastPtr = fastPtr->next->next;
+        if(slowPtr == fastPtr) {
+            loopExists=true;
+            break;
+        }
+    }
+
+    slowPtr = head;
+
+    while(slowPtr!=fastPtr){
+        slowPtr = slowPtr->next;
+        fastPtr = fastPtr->next;
+    }
+
+
+    return slowPtr->val;
+}
 
 
 }//end of namespace ds
