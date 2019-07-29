@@ -213,6 +213,14 @@ public:
      */
     T findBeginofLoop(node<T>* head);
 
+
+    /**
+     * @brief lengthOfLoop Finds the length of the loop
+     * @param head Input headptr
+     * @return length of the loop
+     */
+    size_t lengthOfLoop(node<T>* head);
+
 private:
     node<T>* headptr;
     node<T>* tailptr;
@@ -665,17 +673,48 @@ T linkedlist<T>::findBeginofLoop(node<T>* head){
         }
     }
 
-    slowPtr = head;
+    if(loopExists) {
+        slowPtr = head;
+        while(slowPtr!=fastPtr){
+            slowPtr = slowPtr->next;
+            fastPtr = fastPtr->next;
+        }
+        return slowPtr->val;
+    } else {
+        return 0;
+    }
+}
 
-    while(slowPtr!=fastPtr){
+template <typename T>
+size_t linkedlist<T>::lengthOfLoop(node<T>* head) {
+    if(head == nullptr)
+        return 0;
+
+    size_t len = 0;
+    bool loopExists = false;
+    node<T>* slowPtr = head;
+    node<T>* fastPtr = head;
+
+    while(slowPtr && fastPtr && fastPtr->next){
         slowPtr = slowPtr->next;
-        fastPtr = fastPtr->next;
+        fastPtr = fastPtr->next->next;
+
+        if(slowPtr == fastPtr){
+            loopExists = true;
+            break;
+        }
     }
 
 
-    return slowPtr->val;
+    if(loopExists){
+        fastPtr = fastPtr->next;
+        while(slowPtr != fastPtr){
+            len++;
+            fastPtr = fastPtr->next;
+        }
+    }
+    return  len;
 }
-
 
 }//end of namespace ds
 
