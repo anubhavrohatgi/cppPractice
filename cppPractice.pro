@@ -9,4 +9,5 @@ SUBDIRS += \
     isSortedRecursive \
     singletonDesignPattern \
     bitmapIterator \
-    maxSumSubarray
+    maxSumSubarray \
+    directoryTreeStructure
