@@ -8,4 +8,5 @@ SUBDIRS += \
     greatestCommonDivisor \
     isSortedRecursive \
     singletonDesignPattern \
-    bitmapIterator
+    bitmapIterator \
+    maxSumSubarray
