@@ -35,6 +35,7 @@ public:
     void clear();
 
     void add(const T& val);
+    void addImpl(node<T>** root, const T& val);
 
 
 private:
@@ -56,11 +57,21 @@ BST<T>::~BST<T>()
 }
 
 template <typename T>
-void BST<T>::add(const T& val) {
+void BST<T>::add(const T& val){
+    add(&root,val);
+}
+
+template <typename T>
+void BST<T>::addImpl(node<T>** root,const T& val) {
     if(root == nullptr){
         root = new node<T>(val);
     } else {
+        if(val <= root->data) {
+            //go left
 
+        } else {
+            //go right
+        }
     }
 }
 
