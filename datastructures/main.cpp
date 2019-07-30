@@ -138,14 +138,32 @@ int main()
     std::cout<<"\n\n\n";
     tree.inOrderTraversalRec(tree.getRoot());
     std::cout<<"\n\n\n";
+    tree.inOrderTraversal(tree.getRoot());
+
+    std::cout<<"\n\n\n";
     tree.preOrderTraversalRec(tree.getRoot());
     std::cout<<"\n\n\n";
+    tree.preOrderTraversal(tree.getRoot());
+
+    std::cout<<"\n\n\n";
     tree.postOrderTraversalRec(tree.getRoot());
+    std::cout<<"\n\n\n";
+    tree.postOrderTraversal(tree.getRoot());
+
+    std::cout<<"\n\n\n";
+    tree.levelOrderTraversal(tree.getRoot());
+
     std::cout<<"\n\n";
+
 
 //    ds::bstNode<int>* v= tree.search(10,tree.getRoot());
 
     std::cout<<"Val at node : "<<tree.search(-10,tree.getRoot()) <<"\n\n";
+
+    std::cout<<" \n min : "<<tree.findMax(tree.getRoot())->data<<std::endl;
+//    tree.clear();
+
+//    std::cout<<"Height : "<<tree.height(tree.getRoot()) <<"\n\n";
 
 }
 

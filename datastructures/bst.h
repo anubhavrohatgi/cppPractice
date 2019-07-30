@@ -6,6 +6,7 @@
 #include <error.h>
 
 #include <stack>
+#include <queue>
 
 
 
@@ -51,6 +52,8 @@ public:
 
     void preOrderTraversalRec(bstNode<T>* base);
     void preOrderTraversal(bstNode<T>* base);
+
+    void levelOrderTraversal(bstNode<T>* base);
 
     bool search(const T& val,bstNode<T>* base);
 
@@ -273,6 +276,7 @@ void BST<T>::inOrderTraversal(bstNode<T>* base)
 
     while( cur != nullptr || !s.empty()) {
 
+        //fill all left
         while (cur != nullptr) {
             s.push(cur);
             cur=cur->left;
@@ -297,13 +301,13 @@ void BST<T>::postOrderTraversal(bstNode<T>* base)
     bstNode<T>* prev = nullptr;
 
     do {
-        //push left
+        //go left
         while(cur != nullptr){
             s.push(cur);
             cur = cur->left;
         }
 
-        //push right
+        //go right
         while(cur == nullptr && !s.empty()){
             cur = s.top();
             if(cur->right == nullptr || cur->right == prev) {
@@ -317,6 +321,31 @@ void BST<T>::postOrderTraversal(bstNode<T>* base)
         }
     } while(!s.empty());
 }
+
+
+
+template <typename T>
+void BST<T>::levelOrderTraversal(bstNode<T>* base)
+{
+    if(base == nullptr)
+        return;
+
+    bstNode<T>* cur = base;
+    std::queue<bstNode<T>* > Q;
+    Q.push(cur);
+
+    while(!Q.empty()) {
+        cur = Q.front();
+        Q.pop();
+        std::cout<<cur->data<<"  ";
+        if(cur->left)
+            Q.push(cur->left);
+        if(cur->right)
+            Q.push(cur->right);
+    }
+}
+
+
 
 } //end of namepspace ds
 
