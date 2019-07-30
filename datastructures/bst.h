@@ -58,6 +58,7 @@ public:
     bool search(const T& val,bstNode<T>* base);
 
     int height(bstNode<T>* base);
+    int size(bstNode<T>* base);
 
     bstNode<T> *findMin(bstNode<T>* base) const;
     bstNode<T> *findMax(bstNode<T>* base) const;
@@ -346,6 +347,15 @@ void BST<T>::levelOrderTraversal(bstNode<T>* base)
 }
 
 
+template <typename T>
+int BST<T>::size(bstNode<T>* base)
+{
+    if(base == nullptr)
+        return 0;
+    else {
+        return size(base->left) + size(base->right) + 1;
+    }
+}
 
 } //end of namepspace ds
 
