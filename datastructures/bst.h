@@ -51,6 +51,9 @@ public:
 
     int height(bstNode<T>* base);
 
+    bstNode<T> *findMin(bstNode<T>* base) const;
+    bstNode<T> *findMax(bstNode<T>* base) const;
+
 private:
     bstNode<T>* root;
     size_t maxHeight;
@@ -202,6 +205,31 @@ int BST<T>::height(bstNode<T>* base)
         return  -1;
     else{
         return std::max(height(base->left),height(base->right)) + 1;
+    }
+}
+
+
+template <typename T>
+bstNode<T>* BST<T>::findMin(bstNode<T>* base) const
+{
+    if(base == nullptr)
+        return nullptr;
+    else if(base->left == nullptr){
+        return base;
+    } else {
+        return findMin(base->left);
+    }
+}
+
+template <typename T>
+bstNode<T>* BST<T>::findMax(bstNode<T>* base) const
+{
+    if(base == nullptr)
+        return nullptr;
+    else if(base->right == nullptr){
+        return base;
+    } else {
+        return findMax(base->right);
     }
 }
 
