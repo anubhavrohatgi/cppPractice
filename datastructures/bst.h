@@ -44,8 +44,13 @@ public:
     void printBSTImpl(const std::string& prefix, bstNode<T> **node, bool isLeft);
 
     void inOrderTraversalRec(bstNode<T>* base);
+    void inOrderTraversal(bstNode<T>* base);
+
     void postOrderTraversalRec(bstNode<T>* base);
+    void postOrderTraversal(bstNode<T>* base);
+
     void preOrderTraversalRec(bstNode<T>* base);
+    void preOrderTraversal(bstNode<T>* base);
 
     bool search(const T& val,bstNode<T>* base);
 
@@ -231,6 +236,86 @@ bstNode<T>* BST<T>::findMax(bstNode<T>* base) const
     } else {
         return findMax(base->right);
     }
+}
+
+template <typename T>
+void BST<T>::preOrderTraversal(bstNode<T>* base)
+{
+    if(base == nullptr)
+        return;
+
+    std::stack<bstNode<T>*> s;
+    s.push(base);
+
+    while(!s.empty()) {
+
+        bstNode<T>* node = s.top();
+        std::cout<<node->data<<"  ";
+        s.pop();
+        if(node->right)
+            s.push(node->right);
+        if(node->left)
+            s.push(node->left); //this is the last push since
+        //we want the left to be read out first
+        //hence this will be at tp of the stack
+    }
+}
+
+
+template <typename T>
+void BST<T>::inOrderTraversal(bstNode<T>* base)
+{
+    if(base == nullptr)
+        return;
+
+    std::stack<bstNode<T>*> s;
+    bstNode<T>* cur = base;
+
+    while( cur != nullptr || !s.empty()) {
+
+        while (cur != nullptr) {
+            s.push(cur);
+            cur=cur->left;
+        }
+
+        cur = s.top();
+        std::cout<<cur->data<<"  ";
+        s.pop();
+        cur = cur->right;
+    }
+}
+
+
+template <typename T>
+void BST<T>::postOrderTraversal(bstNode<T>* base)
+{
+    if(base == nullptr)
+        return;
+
+    std::stack<bstNode<T>*> s;
+    bstNode<T>* cur = base;
+    bstNode<T>* prev = nullptr;
+
+    do {
+        //push left
+        while(cur != nullptr){
+            s.push(cur);
+            cur = cur->left;
+        }
+
+        //push right
+        while(cur == nullptr && !s.empty()){
+            cur = s.top();
+            if(cur->right == nullptr || cur->right == prev) {
+                std::cout<<cur->data<<"  ";
+                s.pop();
+                prev = cur;
+                cur = nullptr;
+            } else {
+                cur = cur->right;
+            }
+        }
+    } while(!s.empty());
 }
 
 } //end of namepspace ds
