@@ -35,7 +35,7 @@ public:
     bstNode<T>* getRoot() const;
 
     void clear();
-    void clearImpl(bstNode<T>** base);
+    bstNode<T> *clearImpl(bstNode<T> *base);
 
     void add(const T& val);
     void addImpl(bstNode<T>** base, const T& val);
@@ -48,6 +48,8 @@ public:
     void preOrderTraversalRec(bstNode<T>* base);
 
     bool search(const T& val,bstNode<T>* base);
+
+    int height(bstNode<T>* base);
 
 private:
     bstNode<T>* root;
@@ -71,18 +73,21 @@ template <typename T>
 void BST<T>::clear()
 {
     if(root){
-        clearImpl(&root);
+        root = clearImpl(root);
     }
 }
 
 template <typename T>
-void BST<T>::clearImpl(bstNode<T>** base)
+bstNode<T>* BST<T>::clearImpl(bstNode<T>* base)
 {
-    if(*base != nullptr) {
-        clearImpl(&(*base)->left);
-        clearImpl(&(*base)->right);
-        delete *base;
-    }
+    if(base == nullptr)
+        return nullptr;
+
+    clearImpl(base->left);
+    clearImpl(base->right);
+//    std::cout<<"\nPost Order "<<base->data;
+    delete base;
+    return nullptr;
 }
 
 template <typename T>
@@ -188,6 +193,16 @@ bool BST<T>::search(const T& val,bstNode<T>* base)
     }
     else
         return false;
+}
+
+template <typename T>
+int BST<T>::height(bstNode<T>* base)
+{
+    if(base == nullptr)
+        return  -1;
+    else{
+        return std::max(height(base->left),height(base->right)) + 1;
+    }
 }
 
 } //end of namepspace ds
