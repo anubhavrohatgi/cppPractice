@@ -5,6 +5,10 @@
 
 using namespace std;
 
+//#define BUILD_LINKED_LIST
+#define BUILD_BST
+
+#ifdef BUILD_LINKED_LIST
 int main()
 {
     ds::linkedlist<int> ll;
@@ -99,3 +103,50 @@ int main()
 //    std::cout<<"length after = "<<ll.length()<<std::endl;
     return 0;
 }
+
+#endif
+
+
+#ifdef BUILD_BST
+
+#include "bst.h"
+
+int main()
+{
+    ds::BST<int> tree;
+    tree.add(12);
+    tree.add(13);
+    tree.add(11);
+    tree.add(2);
+    tree.add(5);
+    tree.add(14);
+    tree.add(10);
+    tree.add(6);
+    tree.add(4);
+    tree.add(1);
+    tree.add(7);
+    tree.add(8);
+//    tree.add(17);
+    tree.add(16);
+    tree.add(15);
+    tree.add(16);
+    tree.add(17);
+    cout<<"\nBST \n";
+
+    tree.printBST();
+
+    std::cout<<"\n\n\n";
+    tree.inOrderTraversalRec(tree.getRoot());
+    std::cout<<"\n\n\n";
+    tree.preOrderTraversalRec(tree.getRoot());
+    std::cout<<"\n\n\n";
+    tree.postOrderTraversalRec(tree.getRoot());
+    std::cout<<"\n\n";
+
+//    ds::bstNode<int>* v= tree.search(10,tree.getRoot());
+
+    std::cout<<"Val at node : "<<tree.search(-10,tree.getRoot()) <<"\n\n";
+
+}
+
+#endif
