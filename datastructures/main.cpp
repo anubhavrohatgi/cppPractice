@@ -153,6 +153,9 @@ int main()
     std::cout<<"\n\n\n";
     tree.levelOrderTraversal(tree.getRoot());
 
+    std::cout<<"\n\n\n";
+    tree.reverseLevelOrderTraversal(tree.getRoot());
+
     std::cout<<"\n\n";
 
 
@@ -161,6 +164,9 @@ int main()
     std::cout<<"Val at node : "<<tree.search(-10,tree.getRoot()) <<"\n\n";
 
     std::cout<<" \n min : "<<tree.findMax(tree.getRoot())->data<<std::endl;
+
+    std::cout<<" \n size : "<<tree.size(tree.getRoot())<<std::endl;
+
 //    tree.clear();
 
 //    std::cout<<"Height : "<<tree.height(tree.getRoot()) <<"\n\n";

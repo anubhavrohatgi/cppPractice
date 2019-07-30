@@ -55,6 +55,8 @@ public:
 
     void levelOrderTraversal(bstNode<T>* base);
 
+    void reverseLevelOrderTraversal(bstNode<T>* base);
+
     bool search(const T& val,bstNode<T>* base);
 
     int height(bstNode<T>* base);
@@ -346,6 +348,35 @@ void BST<T>::levelOrderTraversal(bstNode<T>* base)
     }
 }
 
+
+template <typename T>
+void BST<T>::reverseLevelOrderTraversal(bstNode<T>* base)
+{
+    if(base == nullptr)
+        return;
+
+    bstNode<T>* cur = base;
+    std::stack<bstNode<T>* > revStack;
+    std::queue<bstNode<T>* > Q;
+    Q.push(cur);
+
+    while(!Q.empty()){
+        cur = Q.front();
+        revStack.push(cur);
+        Q.pop();
+        if(cur->left)
+            Q.push(cur->left);
+        if(cur->right)
+            Q.push(cur->right);
+    }
+
+    //print elements in rev order from stack
+    while (!revStack.empty()) {
+        cur = revStack.top();
+        std::cout<<cur->data<<"  ";
+        revStack.pop();
+    }
+}
 
 template <typename T>
 int BST<T>::size(bstNode<T>* base)
