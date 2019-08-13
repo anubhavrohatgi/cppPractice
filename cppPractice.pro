@@ -10,4 +10,7 @@ SUBDIRS += \
     singletonDesignPattern \
     bitmapIterator \
     maxSumSubarray \
-    directoryTreeStructure
+    directoryTreeStructure \
+    sockemerchant \
+    countingValleys \
+    repeatedString
