@@ -1,10 +1,5 @@
-TEMPLATE = app
-CONFIG += console c++14
-CONFIG -= app_bundle
-CONFIG -= qt
+TEMPLATE = subdirs
 
-SOURCES += \
-        main.cpp
-
-LIBS += -L/usr/lib\
-        -lpthread
+SUBDIRS += \
+    basicThreading \
+    raiiThread
