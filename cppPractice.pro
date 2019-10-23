@@ -13,4 +13,6 @@ SUBDIRS += \
     directoryTreeStructure \
     sockemerchant \
     countingValleys \
-    repeatedString
+    repeatedString \
+    cppThreads \
+    designPatterns
