@@ -141,7 +141,7 @@ int main() {
 
     //create and fire thread using function object with input reference argument
     std::string str1 = "dog";
-    std::thread t2_areffobj( (WorkerThread2()),str1 );
+    std::thread t2_areffobj( (WorkerThread3()),std::ref(str1) );
 
 
 
