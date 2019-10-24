@@ -35,6 +35,18 @@ public:
         std::cout<<"\n[WORKER1] Ctor : "<<count<<std::endl;
     }
 
+    work1(work1 const& other) : x(other.x)
+    {
+        std::cout << __PRETTY_FUNCTION__ << ' ' << count << '\n';
+    }
+
+    work1& operator=(work1 const& other)
+    {
+        x = other.x;
+        std::cout << __PRETTY_FUNCTION__ << ' ' << count << '\n';
+        return *this;
+    }
+
     ~work1() {
         std::cout<<"\n[WORKER1] Dtor : "<<count<<std::endl;
     }
@@ -52,33 +64,34 @@ private:
 
 int work1::count = 0;
 
-//class work2 {
-//public:
-//    work2(int x_) : x(x_) {
+class work2 {
+public:
+    work2(int x_) : x(x_) {
 
-//    }
+    }
 
-//    ~work2() {
-//        std::cout<<"\n[WORKER2] Destruction accomplished"<<std::endl;
-//    }
+    ~work2() {
+        std::cout<<"\n[WORKER2] Dtor accomplished"<<std::endl;
+    }
 
-//    void operator() () {
-//        for(int i =0; i < x; ++i) {
-//            std::cout<<"[WORKER2] Printing this :: "<<i<<std::endl;
-//        }
-//    }
+    void operator() [[ noreturn ]] () {
+        throw "random";
+    }
 
-//private:
-//    int x;
-//};
+private:
+    int x;
+};
 
 int main()
-{
-    int local_main=5;
-//    work1 my_func(local_main);
-    std::thread t((work1(local_main)));
-    t.join();
-//    threadRAII g(t);
+{    
+    work1 w1{5};
+    work2 w2{5};
+    std::thread t1(std::ref(w1));
+    std::thread t2(std::ref(w2));
+//    t1.join();
+    threadRAII g1(t1);
+    threadRAII g2(t2);
+
     std::cout<<"\n[MAIN] From main thread..."<<std::endl;
     return 0;
 }
