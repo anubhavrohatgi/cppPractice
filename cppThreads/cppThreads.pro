@@ -2,4 +2,5 @@ TEMPLATE = subdirs
 
 SUBDIRS += \
     basicThreading \
-    raiiThread
+    raiiThread \
+    joinDetach
