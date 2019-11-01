@@ -15,4 +15,7 @@ SUBDIRS += \
     countingValleys \
     repeatedString \
     cppThreads \
-    designPatterns
+    designPatterns \
+    mapstl \
+    testbed \
+    hotel_prices
