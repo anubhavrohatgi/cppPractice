@@ -26,8 +26,21 @@ template <class T>
 class linkedlist
 {
 public:
+    /**
+     * @brief linkedlist Constructor
+     */
     linkedlist();
+
+    /**
+     * @brief linkedlist Destructor
+     */
     ~linkedlist();
+
+    /**
+     * @brief linkedlist Constructor with initializer list
+     * @param l input initialier list
+     */
+    linkedlist(std::initializer_list<T> l);
 
     /**
      * @brief push_back Push the new value to the end of list
@@ -248,6 +261,16 @@ linkedlist<T>::~linkedlist()
     clear();
 }
 
+
+template <typename T>
+linkedlist<T>::linkedlist(std::initializer_list<T> l)
+{
+    headptr = nullptr;
+    tailptr = nullptr;
+    lengthKeeper = 0;
+    for(auto k : l)
+        this->push_back(k);
+}
 
 template <typename T>
 void linkedlist<T>::clear()
