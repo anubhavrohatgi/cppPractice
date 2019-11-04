@@ -18,4 +18,5 @@ SUBDIRS += \
     designPatterns \
     mapstl \
     testbed \
-    hotel_prices
+    hotel_prices \
+    SOLIDdesignPrinciples
