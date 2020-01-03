@@ -7,4 +7,5 @@ SOURCES += \
         main.cpp
 
 HEADERS += \
-    singleresponsibility.h
+    singleresponsibility.h \
+    openclosed.h

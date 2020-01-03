@@ -19,4 +19,5 @@ SUBDIRS += \
     mapstl \
     testbed \
     hotel_prices \
-    SOLIDdesignPrinciples
+    SOLIDdesignPrinciples \
+    sumnaturalsdiv3n5

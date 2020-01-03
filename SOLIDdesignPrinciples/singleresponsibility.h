@@ -60,7 +60,10 @@ private:
 
 };
 
-
+/**
+ * @brief The storage class specifically handles storage
+ * for notes entity only
+ */
 class storage {
 public:
     static bool save(const notes& nts, const std::string& fname) {
@@ -88,6 +91,5 @@ public:
         }
     }
 };
-
 
 #endif // SINGLERESPONSIBILITY_H
