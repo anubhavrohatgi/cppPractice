@@ -20,4 +20,5 @@ SUBDIRS += \
     testbed \
     hotel_prices \
     SOLIDdesignPrinciples \
-    sumnaturalsdiv3n5
+    sumnaturalsdiv3n5 \
+    leastCmmonMultiple
