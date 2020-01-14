@@ -21,4 +21,5 @@ SUBDIRS += \
     hotel_prices \
     SOLIDdesignPrinciples \
     sumnaturalsdiv3n5 \
-    leastCmmonMultiple
+    leastCmmonMultiple \
+    removeEventElementsArray
