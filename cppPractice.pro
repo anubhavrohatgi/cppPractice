@@ -22,4 +22,5 @@ SUBDIRS += \
     SOLIDdesignPrinciples \
     sumnaturalsdiv3n5 \
     leastCmmonMultiple \
-    removeEventElementsArray
+    removeEventElementsArray \
+    mergeSortedArrays
